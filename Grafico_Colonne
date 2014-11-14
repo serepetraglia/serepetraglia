@@ -1,0 +1,58 @@
+Table table;
+int lun = 1000/20;
+int dis= 30;
+String dataset="Stranieri_sesso_citt_1987_2013.csv";
+color man = color(26, 155, 242);
+color woman = color(255, 122, 135);
+int anno = 4;
+
+
+void setup (){
+  size(1000,500);
+  stroke (255);
+  line (0,height-dis*3,width,height-dis*3);
+}
+
+void draw () {
+  noLoop();
+  table = loadTable(dataset);
+  for (int i=1; i<20; i=i+2) {
+  TableRow row= table.getRow(i);
+  String nation = row.getString(0);
+  fill(255);
+  textAlign (CENTER);
+  textSize(10);
+  text (nation, lun*i, height-dis*2);
+  textSize (16);
+  text ("migration flow in Milano in the year " + table.getRow(0).getInt(anno), width/2,30);
+  
+  
+  
+  float x = row.getFloat(anno);
+  noStroke();
+  fill(man);
+  rect (lun*i-15, height-dis*3-x, 10, x);
+  rect (dis, height-dis,10,10);
+  }
+  
+  fill(255);
+  textAlign(LEFT);
+  textSize(10);
+  text ("male",dis+15,height-dis+10);
+  
+
+for (int i=2; i<20; i=i+2) {
+  TableRow row= table.getRow(i);
+  float x = row.getFloat(anno);
+  noStroke();
+  fill(woman);
+  rect (lun*i-45, height-dis*3-x, 10, x);
+  rect (dis*3, height-dis,10,10);
+}
+
+  fill(255);
+  textAlign(LEFT);
+  textSize(10);
+  text ("female",dis*3+15,height-dis+10);
+
+}
