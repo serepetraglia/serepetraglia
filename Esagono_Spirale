@@ -1,0 +1,45 @@
+float gradi = 0;
+float val = 10;
+float boh = 0;
+float z = 0;
+
+void setup (){
+  size (400,400);
+}
+
+void draw (){
+  //background (250,220,220);
+
+spirale (10,1);
+    
+}
+
+void spirale (int A, int ciao){
+     
+  float angle = radians (gradi); 
+   gradi += val;
+   boh = boh+0.5;
+   float x = sin (angle)*boh+width/2;
+   float y = cos (angle)*boh+height/2;
+   noStroke();
+   z = z+ciao;
+   fill (255,255,z);
+   //ellipse(x,y,A,A);
+   esagono (5,x,y);
+   
+}
+
+void esagono (int radius,float x, float y){
+
+beginShape ();
+
+for (int i =0; i <360; i =i+ int(360/6)){
+  float angle1 = radians(i);
+  float a = (sin(angle1)*radius);
+  float b = (cos(angle1)*radius);
+  vertex (a+x,b+y);
+}
+
+endShape(CLOSE);
+}
+   
